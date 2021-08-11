@@ -67,8 +67,8 @@ function TransactionsList ({ transactions }) {
 
     return (
         <ScrollView style={{ alignSelf: "stretch" }}>
-            {transactions.map(transaction => (
-              <Swipeable
+            {transactions.map((transaction, index) => (
+              <Swipeable key={index}
               ref={this.updateRef}
               friction={2}
               leftThreshold={30}

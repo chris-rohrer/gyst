@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import withObservables from "@nozbe/with-observables";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { color } from "react-native-reanimated";
+import { StyleSheet, Text, View } from "react-native";
 
 function HomeSummary ({transactions}) {
 
     var sum = 0;
     transactions.map(transaction => (
-            sum = transaction.amount)
+      
+            sum = sum+transaction.amount)
     )
 
 
@@ -22,8 +22,10 @@ function HomeSummary ({transactions}) {
 
 // withObservables is HOC(Higher Order Component) to make any React component reactive.
 const enhance = withObservables(["transactions"],({ database }) => ({
-    transactions: database.collections.get("transactions").query().observe(),
+    transactions: database.collections.get("transactions").query().observe(),  
   }));
+
+  
 
 const styles = StyleSheet.create({
   

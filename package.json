@@ -12,6 +12,7 @@
   "dependencies": {
     "@nozbe/watermelondb": "^0.23.0",
     "@nozbe/with-observables": "^1.4.0",
+    "@react-native-picker/picker": "^1.16.5",
     "@react-navigation/stack": "^6.0.4",
     "cocoapods": "^0.0.0",
     "react": "17.0.1",

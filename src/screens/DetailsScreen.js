@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Text, View, Button, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { Text, View, Button, TouchableOpacity, StyleSheet, TextInput, Switch } from 'react-native';
 import DatabaseContext from '../database/context';
 import withObservables from "@nozbe/with-observables";
+import {Picker} from '@react-native-picker/picker';
 import { withSafeAreaInsets } from 'react-native-safe-area-context';
 
   function DetailsScreen({navigation, route}) {
@@ -13,8 +14,14 @@ import { withSafeAreaInsets } from 'react-native-safe-area-context';
 
     const [title, setTitle] = useState("Generated Title");
     const [amount, setAmount] = useState(100);
-    const [currency, setCurrency] = useState("CHF");
     const [date, setDate] = useState();
+
+    /* Currency Picker Code */
+    const [currency, setCurrency] = useState();
+    /* Currency End */
+
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     const updateTitle = async (new_title, entry) => {
     await database.write(async () => {
@@ -27,13 +34,17 @@ import { withSafeAreaInsets } from 'react-native-safe-area-context';
   const updateAmount = async (new_amount, entry) => {
     await database.write(async () => {
       await entry.update(transaction => {
-        console.log(new_amount)
+        if(isEnabled){
         transaction.amount = Number(new_amount)
+      } else {
+        transaction.amount = Number(-new_amount)
+      }
       })
     })
   }
 
   const updateCurrency = async (new_currency, entry) => {
+    setCurrency(new_currency)
     await database.write(async () => {
       await entry.update(transaction => {
         transaction.currency = new_currency
@@ -50,10 +61,6 @@ import { withSafeAreaInsets } from 'react-native-safe-area-context';
   }
 
   const createEntry = async (transaction) => {
-      makeTransaction() 
-  }
-
-  const makeTransaction = async (value) => {
     try {
       // Make new Transaction
       await database.write(async () => {
@@ -62,7 +69,7 @@ import { withSafeAreaInsets } from 'react-native-safe-area-context';
           transaction.title = title;
           transaction.amount = amount;
           transaction.currency = currency;
-          transaction.date = new Date('2016/12/01');
+          transaction.date = new Date;
         })
         navigation.goBack()
       })
@@ -76,7 +83,8 @@ import { withSafeAreaInsets } from 'react-native-safe-area-context';
       <Text>Name: {data.title}</Text>
       <Text>Amount: {data.amount}</Text>
       <Text>Currency: {data.currency}</Text>
-      <Text>Date: {data.date.getDate() + '-' + data.date.getMonth() + '-' + data.date.getYear()}</Text>
+      <Text>Date: {data.date.getDate()} - {data.date.getMonth() + 1} - {data.date.getFullYear()}</Text>
+      <Text>Income: {isEnabled.toString()}</Text>
     </View>
   )
   
@@ -117,6 +125,14 @@ import { withSafeAreaInsets } from 'react-native-safe-area-context';
                {getData()}            
         </View>
 
+        <Switch
+        trackColor={{ false: "#767577", true: "#767577" }}
+        thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      />
+
         <TextInput style={styles.input}
         onChangeText={(text) => setTitle(text)}
         onSubmitEditing={() => updateTitle(title, data)}
@@ -131,11 +147,10 @@ import { withSafeAreaInsets } from 'react-native-safe-area-context';
         defaultValue = {"100"}
         />
 
-        <TextInput style={styles.input}
-        onChangeText={(text) => setCurrency(text)}
-        onSubmitEditing={() => updateCurrency(currency, data)}
-        defaultValue = {"CHF"}
-        />
+        <Picker selectedValue={currency} style={{height: 250, width: 250}}  onValueChange={(itemValue, itemIndex) => updateCurrency(itemValue, data)}>
+          <Picker.Item label="CHF" value="CHF" />
+          <Picker.Item label="EUR" value="EUR" />
+        </Picker>
 
         {getButton()}
 

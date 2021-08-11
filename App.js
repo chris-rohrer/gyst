@@ -11,6 +11,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import TransactionsScreen from './src/screens/TransactionsScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
 import AboutScreen from './src/screens/AboutScreen';
+import RoadmapScreen from './src/screens/RoadmapScreen';
 
 // Watermelon DB
 import { Database } from '@nozbe/watermelondb';
@@ -42,7 +43,7 @@ const adapter = new SQLiteAdapter({
 const database = new Database({
   adapter,
   modelClasses: dbModels,
-  actionsEnabled: true,
+  //actionsEnabled: true,
 })
 
 export default function App({navigation}) {
@@ -56,6 +57,7 @@ export default function App({navigation}) {
         <Stack.Screen name='Details' component={DetailsScreen} />
         <Stack.Screen name='About' component={AboutScreen} />
         <Stack.Screen name='Transactions' component={TransactionsScreen} />
+        <Stack.Screen name='Roadmap' component={RoadmapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     </DatabaseContext.Provider>

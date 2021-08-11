@@ -34,7 +34,20 @@ const styles = StyleSheet.create({
       borderRadius: 2,
       borderWidth: 2,
     },
-  
+
+    buttonOFF: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignSelf: 'stretch',
+      paddingVertical: 12,
+      paddingHorizontal: 12,
+      marginHorizontal: 32,
+      marginVertical: 6,
+      borderRadius: 2,
+      borderWidth: 2,
+      backgroundColor: 'grey',
+    },
+
     h1: {
       fontSize: 40,
       margin: 25
