@@ -17,7 +17,7 @@ function TransactionsList ({ transactions }) {
       this._swipeableRow.close();
     };
 
-    renderLeftActions = (progress, dragX) => {
+    /*renderLeftActions = (progress, dragX) => {
       const trans = dragX.interpolate({
         inputRange: [0, 50, 100, 101],
         outputRange: [-20, 0, 0, 1],
@@ -35,7 +35,7 @@ function TransactionsList ({ transactions }) {
           </Animated.Text>
         </RectButton>
       );
-    };
+    }; */
 
     renderRightAction = (text, color, x, progress) => {
       const trans = progress.interpolate({
@@ -44,7 +44,7 @@ function TransactionsList ({ transactions }) {
       });
       const pressHandler = () => {
         this.close();
-        alert(text);
+          alert(text);
       };
       return (
         <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
@@ -81,17 +81,6 @@ function TransactionsList ({ transactions }) {
               </Swipeable>
             ))}
         </ScrollView>)
-}
-
-const createTransaction = async(database, data) => {
-
-    const transactionsCollection = database.get('transactions')
-    const newTransaction = await transactionsCollection.create(transaction => {
-        transaction.title = data.title
-        transaction.amount = data.amount
-        transaction.currency = data.currency
-        transaction.date = data.date
-    })
 }
 
 // withObservables is HOC(Higher Order Component) to make any React component reactive.

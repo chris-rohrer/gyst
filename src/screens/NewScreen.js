@@ -1,118 +1,75 @@
 import React, { useState } from 'react';
 import { Text, View, Button, TouchableOpacity, StyleSheet, TextInput, Switch, ScrollView, Modal, Pressable } from 'react-native';
 import DatabaseContext from '../database/context';
-import withObservables from "@nozbe/with-observables";
 import {Picker} from '@react-native-picker/picker';
 import DatePicker from 'react-native-date-picker'
 
   function DetailsScreen({navigation, route}) {
 
     const database = React.useContext(DatabaseContext);
-    var data = route.params.data;
     const [currencyVisible, setCurrencyVisible] = useState(false);
     const [dateVisible, setDateVisible] = useState(false);
 
-    const [title, setTitle] = useState(data.title);
-    const [amount, setAmount] = useState(Math.abs(data.amount).toString());
-    const [currency, setCurrency] = useState(data.currency);
+    const [title, setTitle] = useState("Title");
+    const [amount, setAmount] = useState("100");
+    const [date, setDate] = useState(new Date);
+    const [currency, setCurrency] = useState("CHF");
 
-    const [isEnabled, setIsEnabled] = useState(data.amount>0);
-    const toggleSwitch = () => {setIsEnabled(previousState => !previousState), updateAmount(amount*-1, data)};
+    const [isIncome, setIsIncome] = useState(false);
+    const toggleSwitch = () => {setIsIncome(previousState => !previousState)};
 
-    const updateTitle = async (new_title, entry) => {
-    await database.write(async () => {
-      await entry.update(transaction => {
-        transaction.title = new_title
+
+  const createEntry = async () => {
+    try {
+      // Make new Transaction
+      await database.write(async () => {
+        const transactionsCollection = database.get('transactions')
+        await transactionsCollection.create(transaction => {
+          transaction.title = title;
+          if(isIncome) {transaction.amount = Number(amount)}
+          else {transaction.amount = Number(amount)*(-1)}
+          transaction.currency = currency;
+          transaction.date = date;
+        })
+        navigation.goBack()
       })
-    })
+    } catch (e) {
+      alert(e)
+    }
   }
 
-  const updateAmount = async (new_amount, entry) => {
-    await database.write(async () => {
-      await entry.update(transaction => {
-        if(isEnabled){
-        transaction.amount = Number(new_amount)
-      } else {
-        transaction.amount = Number(-new_amount)
-      }
-      })
-    })
+  function returnTransactionType() {
+    if(isIncome){ return "Income" } else { return "Expense"}
   }
-
-  const updateCurrency = async (new_currency, entry) => {
-    setCurrency(new_currency)
-    await database.write(async () => {
-      await entry.update(transaction => {
-        transaction.currency = new_currency
-      })
-    })
-  }
-
-  const updateDate = async (new_date, entry) => {
-    await database.write(async () => {
-      await entry.update(transaction => {
-        transaction.date = new_date
-      })
-    })
-  }
-
-  const deleteEntry = async (transaction) => {
-    await database.write(async () => {
-      await transaction.destroyPermanently() // permanent
-      navigation.goBack()
-    })
-    
-  }
-
-  function isIncome() {
-    if(isEnabled){ return "Income" } else { return "Expense"}
-  }
-
-  const Data = ({ data }) => (
-    <View>
-      <Text>Name: {data.title}</Text>
-      <Text>Amount: {data.amount}</Text>
-      <Text>Currency: {data.currency}</Text>
-      <Text>Date: {data.date.getDate()} - {data.date.getMonth() + 1} - {data.date.getFullYear()}</Text>
-    </View>
-  )
-  
-  const enhanceData = withObservables(['data'], ({ data }) => ({
-    data
-  }))
-  
-  const EnhancedData = enhanceData(Data)
 
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
         <View style={{ flexDirection: 'row'}}>
-        <Text>{isIncome()}</Text>
+        <Text>{returnTransactionType()}</Text>
         <Switch
         trackColor={{ false: "#767577", true: "#767577" }}
-        thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
+        thumbColor={isIncome ? "#f4f3f4" : "#f4f3f4"}
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
-        value={isEnabled}
+        value={isIncome}
       />
       </View>
 
         <TextInput style={styles.input}
         onChangeText={(text) => setTitle(text)}
-        onBlur={() => updateTitle(title, data)}
-        defaultValue = {data.title}
+        defaultValue = {title}
         />
 
         <TextInput style={styles.input}
         keyboardType = 'numeric'
         returnKeyType={ 'done' }
         onChangeText={(text) => setAmount(text)}
-        onBlur={() => updateAmount(amount, data)}
         defaultValue = {amount}
         />
-      
-      <Modal
+
+        <Modal
         animationType="slide"
         transparent={true}
         visible={currencyVisible}
@@ -123,7 +80,7 @@ import DatePicker from 'react-native-date-picker'
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             
-            <Picker selectedValue={currency} style={{height: 250, width: 250}} onValueChange={(itemValue, itemIndex) => updateCurrency(itemValue, data)}>
+            <Picker selectedValue={currency} style={{height: 250, width: 250}} onValueChange={(itemValue, itemIndex) => setCurrency(itemValue)}>
             <Picker.Item label="CHF" value="CHF" />
             <Picker.Item label="EUR" value="EUR" />
             </Picker>
@@ -138,6 +95,7 @@ import DatePicker from 'react-native-date-picker'
         </View>
       </Modal>
 
+
       <Modal
         animationType="slide"
         transparent={true}
@@ -145,15 +103,16 @@ import DatePicker from 'react-native-date-picker'
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
           setDateVisible(!dateVisible);
-        }}>
+        }}
+      >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             
             <DatePicker
-            date={data.date}
-            onDateChange={(new_date) => updateDate(new_date, data)}
+            date={date}
+            onDateChange={(new_date) => setDate(new_date)}
             mode={'date'}
-            locale={"en-gb"}
+            locale={'en-gb'}
             />
 
             <Pressable
@@ -168,9 +127,11 @@ import DatePicker from 'react-native-date-picker'
 
       <Button title={currency} onPress={() => setCurrencyVisible(true)}/>
 
-      <Button title={'' + data.date.getDate() + " - " + (data.date.getMonth() + 1) + " - " + data.date.getFullYear()} onPress={() => setDateVisible(true)}/>
-
-      <Button title="Delete" onPress={() => deleteEntry(data)}/>
+      <Button title={'' + date.getDate() + " - " + (date.getMonth() + 1) + " - " + date.getFullYear()} onPress={() => setDateVisible(true)}/>
+  
+        <Button
+          title="Save"
+          onPress={() => createEntry()}/>
       </View>
     );
   }

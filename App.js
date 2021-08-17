@@ -10,6 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/screens/HomeScreen';
 import TransactionsScreen from './src/screens/TransactionsScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
+import NewScreen from './src/screens/NewScreen';
 import AboutScreen from './src/screens/AboutScreen';
 import RoadmapScreen from './src/screens/RoadmapScreen';
 
@@ -55,6 +56,7 @@ export default function App({navigation}) {
       <Stack.Navigator>
         <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}}/>
         <Stack.Screen name='Details' component={DetailsScreen} />
+        <Stack.Screen name='New' component={NewScreen} />
         <Stack.Screen name='About' component={AboutScreen} />
         <Stack.Screen name='Transactions' component={TransactionsScreen} />
         <Stack.Screen name='Roadmap' component={RoadmapScreen} />

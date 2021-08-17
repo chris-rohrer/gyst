@@ -11,7 +11,7 @@ import DatabaseContext from '../database/context';
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
 
-        <Button title="New" onPress={() => navigation.navigate("Details", {data:null, type:"transaction", isNew: true})}/>
+        <Button title="New" onPress={() => navigation.navigate("New", {type:"transaction"})}/>
 
         <TransactionsList database={database}/>
 

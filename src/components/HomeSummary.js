@@ -6,7 +6,6 @@ function HomeSummary ({transactions}) {
 
     var sum = 0;
     transactions.map(transaction => (
-      
             sum = sum+transaction.amount)
     )
 
@@ -25,7 +24,6 @@ const enhance = withObservables(["transactions"],({ database }) => ({
     transactions: database.collections.get("transactions").query().observe(),  
   }));
 
-  
 
 const styles = StyleSheet.create({
   
