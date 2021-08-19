@@ -1,17 +1,46 @@
 
 /**
- * Colors.js will be used to define the theme's colors across the entire application. Besides defining the actual color code, it will define where and when each color will be used. 
- * This usage of collor should also be inverted to create a light and a dark variante of the theme.
- * 
- * Components:
- * - Light
- * - Dark
- * - Primary
- * - Secondary
- * - Font Color
- * - Link Color
- * - Button Color
- * - Accent Color
- * - Alert Color
- * - Disabled Color
+ * Colors.js 
+ */
+
+ import { Appearance } from 'react-native';
+ 
+ const colorScheme = Appearance.getColorScheme();
+ const isDark = (colorScheme === 'dark');
+
+export const Light = isDark ? 'coral' : 'lightcoral'
+export const Dark = isDark ? 'lightcoral' : 'coral' 
+export const Primary = isDark ? 'darkteal' : 'teal'
+export const Secondary = isDark ? 'darkturquoise' : 'turquoise'
+export const Font = isDark ? '#d3d3d3' : 'darkslategray'
+export const Link = isDark ? 'lightcoral' : 'coral'
+export const Button = '#2196F3'
+export const Accent = isDark ? 'lightcyan' : 'darkcyan'
+export const Alert = isDark ? 'lightfirebrick' : 'firebrick'
+export const Disabled = isDark ? 'darkgrey' : 'lightgrey'
+export const Background = isDark ? '#181818' : 'white'
+export const Header = isDark ? '#121212' : 'white'
+
+
+/** NOTES
+ * const MAIN_COLOR = 'white';
+
+const someStyle = {
+  padding: 5,
+  margin: 5,
+}
+
+const styles = StyleSheet.create({
+  usernameIcon: {
+    color: MAIN_COLOR,
+    ...someStyle,
+  },
+  generalStyle: {
+    backgroundColor: 'white',
+  }
+})
+
+// you can also combine styles in the component
+// note that the latter style will override duplicated styles
+<View style={[styles.usernameIcon, styles.generalStyle]} />
  */

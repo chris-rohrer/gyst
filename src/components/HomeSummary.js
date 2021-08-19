@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import withObservables from "@nozbe/with-observables";
 import { StyleSheet, Text, View } from "react-native";
+import {Typography} from '../styles'
 
 function HomeSummary ({transactions}) {
 
@@ -12,9 +13,9 @@ function HomeSummary ({transactions}) {
 
     return(
         <View style={styles.toppanel}>
-            <Text style={styles.h1}>GYST!</Text>
-            <Text>Summary</Text>
-            <Text style={styles.summary}>{sum} CHF</Text>
+            <Text style={Typography.H1}>GYST!</Text>
+            <Text style={Typography.H2}>Summary</Text>
+            <Text style={Typography.Summary}>{sum} CHF</Text>
         </View>
     )
 }
@@ -26,15 +27,6 @@ const enhance = withObservables(["transactions"],({ database }) => ({
 
 
 const styles = StyleSheet.create({
-  
-    h1: {
-      fontSize: 50,
-      margin: 25,
-    },
-  
-    summary: {
-      fontSize: 50,
-    },
 
     toppanel: {
         alignSelf: 'stretch',

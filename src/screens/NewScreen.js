@@ -3,6 +3,7 @@ import { Text, View, Button, TouchableOpacity, StyleSheet, TextInput, Switch, Sc
 import DatabaseContext from '../database/context';
 import {Picker} from '@react-native-picker/picker';
 import DatePicker from 'react-native-date-picker'
+import Styles, { Spacing, Typography } from '../styles';
 
   function DetailsScreen({navigation, route}) {
 
@@ -44,10 +45,10 @@ import DatePicker from 'react-native-date-picker'
 
 
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={Spacing.Container}>
 
-        <View style={{ flexDirection: 'row'}}>
-        <Text>{returnTransactionType()}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 'auto'}}>
+        <Text style = {Typography.H1}>{returnTransactionType()}</Text>
         <Switch
         trackColor={{ false: "#767577", true: "#767577" }}
         thumbColor={isIncome ? "#f4f3f4" : "#f4f3f4"}
@@ -57,12 +58,12 @@ import DatePicker from 'react-native-date-picker'
       />
       </View>
 
-        <TextInput style={styles.input}
+        <TextInput style={Styles.input}
         onChangeText={(text) => setTitle(text)}
         defaultValue = {title}
         />
 
-        <TextInput style={styles.input}
+        <TextInput style={Styles.input}
         keyboardType = 'numeric'
         returnKeyType={ 'done' }
         onChangeText={(text) => setAmount(text)}
@@ -77,8 +78,8 @@ import DatePicker from 'react-native-date-picker'
           Alert.alert("Modal has been closed.");
           setCurrencyVisible(!currencyVisible);
         }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+        <View style={Styles.centeredView}>
+          <View style={Styles.modalView}>
             
             <Picker selectedValue={currency} style={{height: 250, width: 250}} onValueChange={(itemValue, itemIndex) => setCurrency(itemValue)}>
             <Picker.Item label="CHF" value="CHF" />
@@ -86,10 +87,10 @@ import DatePicker from 'react-native-date-picker'
             </Picker>
 
             <Pressable
-              style={[styles.button, styles.buttonClose]}
+              style={[Styles.button, Styles.buttonClose]}
               onPress={() => setCurrencyVisible(!currencyVisible)}
             >
-              <Text style={styles.textStyle}>Done</Text>
+              <Text style={Styles.textStyle}>Done</Text>
             </Pressable>
           </View>
         </View>
@@ -105,8 +106,8 @@ import DatePicker from 'react-native-date-picker'
           setDateVisible(!dateVisible);
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+        <View style={Styles.centeredView}>
+          <View style={Styles.modalView}>
             
             <DatePicker
             date={date}
@@ -116,10 +117,10 @@ import DatePicker from 'react-native-date-picker'
             />
 
             <Pressable
-              style={[styles.button, styles.buttonClose]}
+              style={[Styles.button, Styles.buttonClose]}
               onPress={() => setDateVisible(!dateVisible)}
             >
-              <Text style={styles.textStyle}>Done</Text>
+              <Text style={Styles.textStyle}>Done</Text>
             </Pressable>
           </View>
         </View>
@@ -135,84 +136,5 @@ import DatePicker from 'react-native-date-picker'
       </View>
     );
   }
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      //justifyContent: 'center',
-    },
-  
-    input: {
-      borderWidth: 1,
-      borderColor: 'black',
-      alignSelf: 'stretch',
-      marginHorizontal: 32,
-      marginVertical: 6,
-      paddingHorizontal: 20,
-      height: 45,
-      borderRadius: 6
-    },
-  
-    button: {
-      backgroundColor: 'black',
-      alignItems: 'center',
-      justifyContent: 'center',
-      alignSelf: 'stretch',
-      paddingVertical: 12,
-      paddingHorizontal: 12,
-      marginHorizontal: 32,
-      marginVertical: 6,
-      borderRadius: 6,
-    },
-  
-    h1: {
-      fontSize: 50,
-      margin: 50
-    },
-
-    centeredView: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 22
-    },
-    modalView: {
-      margin: 20,
-      backgroundColor: "white",
-      borderRadius: 20,
-      padding: 35,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
-    },
-    button: {
-      borderRadius: 20,
-      padding: 10,
-      elevation: 2
-    },
-    buttonOpen: {
-      backgroundColor: "#F194FF",
-    },
-    buttonClose: {
-      backgroundColor: "#2196F3",
-    },
-    textStyle: {
-      color: "white",
-      fontWeight: "bold",
-      textAlign: "center"
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: "center"
-    }
-  });
 
   export default DetailsScreen;

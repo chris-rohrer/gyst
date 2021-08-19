@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity, useColorScheme } from 'react-native';
 
 import DatabaseContext from '../database/context';
 import HomeSummary from '../components/HomeSummary';
-import styles from '../styles/index';
+import Styles, { Buttons, Typography, Spacing } from '../styles/index';
 
 function HomeScreen({navigation}){
 
@@ -12,29 +12,29 @@ const database = React.useContext(DatabaseContext);
 const colorScheme = useColorScheme();
  
     return (
-      <View style={styles.container}>
+      <View style={Spacing.Container}>
         <HomeSummary database={database}/>
   
-        <View style={styles.mainmenu}>
+        <View style={Spacing.Menu}>
   
-        <TouchableOpacity style={ styles.button}onPress={() => navigation.navigate('Transactions')}>
-          <Text style={styles.buttontext}>Transactions</Text>
+        <TouchableOpacity style={ Buttons.Button }onPress={() => navigation.navigate('Transactions')}>
+          <Text style={Typography.Button}>Transactions</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={ styles.buttonOFF}>
-          <Text style={styles.buttontext}>Projects</Text>
+        <TouchableOpacity style={ Buttons.Disabled}>
+          <Text style={Typography.Button}>Projects</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={ styles.buttonOFF}>
-          <Text style={styles.buttontext}>Time Tracking</Text>
+        <TouchableOpacity style={ Buttons.Disabled}>
+          <Text style={Typography.Button}>Time Tracking</Text>
         </TouchableOpacity>
   
-        <TouchableOpacity style={ styles.button}onPress={() => navigation.navigate('About')}>
-          <Text style={styles.buttontext}>About</Text>
+        <TouchableOpacity style={ Buttons.Button }onPress={() => navigation.navigate('About')}>
+          <Text style={Typography.Button}>About</Text>
         </TouchableOpacity>
   
         </View>
-        <Text>Color Scheme: {colorScheme}</Text>
+        <Text style={Typography.Body}>Color Scheme: {colorScheme}</Text>
       </View>
     );
   }

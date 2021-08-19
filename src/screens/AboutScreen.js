@@ -1,26 +1,22 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 
-import styles from '../styles/index';
+import { Buttons, Typography, Spacing } from '../styles/index';
 
 function AboutScreen({navigation}) {
   return (
-    <View style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-       <Text style={styles.h1}>About</Text>
-      <TouchableOpacity style={ styles.button } onPress={() => navigation.navigate('Roadmap')}>
-          <Text style={styles.buttontext}>Roadmap</Text>
+    <View style={Spacing.Container}>
+       <Text style={Typography.H1}>About</Text>
+      <TouchableOpacity style={ Buttons.Button } onPress={() => navigation.navigate('Roadmap')}>
+          <Text style={Typography.Button}>Roadmap</Text>
         </TouchableOpacity>
 
-      <TouchableOpacity style={ styles.buttonOFF}>
-          <Text style={styles.buttontext}>Source Code</Text>
+      <TouchableOpacity style={ Buttons.Disabled }>
+          <Text style={Typography.Button}>Source Code</Text>
         </TouchableOpacity>
 
-      <TouchableOpacity style={ styles.buttonOFF}>
-          <Text style={styles.buttontext}>Developer</Text>
+      <TouchableOpacity style={ Buttons.Disabled }>
+          <Text style={Typography.Button}>Developer</Text>
         </TouchableOpacity>
 
     </View>

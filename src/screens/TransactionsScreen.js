@@ -3,13 +3,14 @@ import { Text, View, Button, ScrollView } from 'react-native';
 
 import TransactionsList from '../components/TransactionsList';
 import DatabaseContext from '../database/context';
+import { Spacing } from '../styles';
 
   function TransactionsScreen({navigation}) {
 
     const database = React.useContext(DatabaseContext);
 
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={ Spacing.Container}>
 
         <Button title="New" onPress={() => navigation.navigate("New", {type:"transaction"})}/>
 

@@ -23,6 +23,9 @@ import migrations from './src/database/migrations'
 import { dbModels } from './src/database';
 import DatabaseContext from './src/database/context';
 
+// Import Styles
+import { Colors } from './src/styles'
+
 // First, create the adapter to the underlying database:
 const adapter = new SQLiteAdapter({
   schema,
@@ -55,10 +58,10 @@ export default function App({navigation}) {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}}/>
-        <Stack.Screen name='Details' component={DetailsScreen} />
-        <Stack.Screen name='New' component={NewScreen} />
-        <Stack.Screen name='About' component={AboutScreen} />
-        <Stack.Screen name='Transactions' component={TransactionsScreen} />
+        <Stack.Screen name='Details' component={DetailsScreen} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
+        <Stack.Screen name='New' component={NewScreen} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
+        <Stack.Screen name='About' component={AboutScreen} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
+        <Stack.Screen name='Transactions' component={TransactionsScreen} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
         <Stack.Screen name='Roadmap' component={RoadmapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
