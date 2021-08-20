@@ -4,9 +4,9 @@ import { Text, View, TouchableOpacity, useColorScheme } from 'react-native';
 
 import DatabaseContext from '../database/context';
 import HomeSummary from '../components/HomeSummary';
-import Styles, { Buttons, Typography, Spacing } from '../styles/index';
+import { Buttons, Typography, Spacing } from '../styles/index';
 
-function HomeScreen({navigation}){
+function Home({navigation}){
 
 const database = React.useContext(DatabaseContext);
 const colorScheme = useColorScheme();
@@ -39,4 +39,4 @@ const colorScheme = useColorScheme();
     );
   }
 
-  export default HomeScreen;
+  export default Home;

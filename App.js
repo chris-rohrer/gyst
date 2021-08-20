@@ -7,12 +7,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Import Screens
-import HomeScreen from './src/screens/HomeScreen';
-import TransactionsScreen from './src/screens/TransactionsScreen';
-import DetailsScreen from './src/screens/DetailsScreen';
-import NewScreen from './src/screens/NewScreen';
-import AboutScreen from './src/screens/AboutScreen';
-import RoadmapScreen from './src/screens/RoadmapScreen';
+import Home from './src/screens/Home';
+import Transactions from './src/screens/Transactions';
+import Details from './src/screens/Details';
+import NewTransaction from './src/screens/NewTransaction';
+import About from './src/screens/About';
+import Roadmap from './src/screens/Roadmap';
 
 // Watermelon DB
 import { Database } from '@nozbe/watermelondb';
@@ -57,12 +57,12 @@ export default function App({navigation}) {
     <DatabaseContext.Provider value={database}>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}}/>
-        <Stack.Screen name='Details' component={DetailsScreen} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
-        <Stack.Screen name='New' component={NewScreen} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
-        <Stack.Screen name='About' component={AboutScreen} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
-        <Stack.Screen name='Transactions' component={TransactionsScreen} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
-        <Stack.Screen name='Roadmap' component={RoadmapScreen} />
+        <Stack.Screen name='Home' component={Home} options={{headerShown: false}}/>
+        <Stack.Screen name='Details' component={Details} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
+        <Stack.Screen name='New' component={NewTransaction} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
+        <Stack.Screen name='About' component={About} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
+        <Stack.Screen name='Transactions' component={Transactions} options={{headerStyle: {backgroundColor:Colors.Header, shadowColor: 'transparent'}, headerTitleStyle: { color: Colors.Font}}} />
+        <Stack.Screen name='Roadmap' component={Roadmap} />
       </Stack.Navigator>
     </NavigationContainer>
     </DatabaseContext.Provider>

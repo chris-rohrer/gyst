@@ -6,7 +6,7 @@ import {Picker} from '@react-native-picker/picker';
 import DatePicker from 'react-native-date-picker'
 import Styles, { Spacing, Typography, Buttons, Colors  } from'../styles'
 
-  function DetailsScreen({navigation, route}) {
+  function Details({navigation, route}) {
 
     const database = React.useContext(DatabaseContext);
     var data = route.params.data;
@@ -89,7 +89,7 @@ import Styles, { Spacing, Typography, Buttons, Colors  } from'../styles'
       <View style={Spacing.Container}>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 'auto'}}>
-        <Text style={Typography.H1}>{isIncome()}</Text>
+        <Text style={Typography.H3}>{isIncome()}</Text>
         <Switch
         trackColor={{ false: "#767577", true: "#767577" }}
         thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
@@ -99,13 +99,14 @@ import Styles, { Spacing, Typography, Buttons, Colors  } from'../styles'
       />
       </View>
 
-        <TextInput style={Styles.input}
+        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35}, Typography.Emphasis]}>Title</Text>
+        <TextInput style={[Styles.input, Typography.H3]}
         onChangeText={(text) => setTitle(text)}
         onBlur={() => updateTitle(title, data)}
         defaultValue = {data.title}
         />
-
-        <TextInput style={Styles.input}
+        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35, marginTop: 15}, Typography.Emphasis]}>Amount</Text>
+        <TextInput style={[Styles.input, Typography.H3]}
         keyboardType = 'numeric'
         returnKeyType={ 'done' }
         onChangeText={(text) => setAmount(text)}
@@ -168,13 +169,26 @@ import Styles, { Spacing, Typography, Buttons, Colors  } from'../styles'
         </View>
       </Modal>
 
-      <Button title={currency} onPress={() => setCurrencyVisible(true)}/>
+      <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 'auto'}}>
+        <Text style={Typography.H3}>Currency:</Text>
+        <TouchableOpacity onPress={() => setCurrencyVisible(true)}>
+          <Text style={Typography.H3}>{currency}</Text>
+        </TouchableOpacity>
+      </View>
 
-      <Button title={'' + data.date.getDate() + " - " + (data.date.getMonth() + 1) + " - " + data.date.getFullYear()} onPress={() => setDateVisible(true)}/>
 
-      <Button title="Delete" onPress={() => deleteEntry(data)}/>
+      <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 'auto'}}>
+        <Text style={Typography.H3}>Date:</Text>
+        <TouchableOpacity  onPress={() => setDateVisible(true)}>
+          <Text style={Typography.H3}>{'' + data.date.getDate() + " - " + (data.date.getMonth() + 1) + " - " + data.date.getFullYear()}</Text>
+        </TouchableOpacity>
+      </View>
+      <TouchableOpacity style={[Buttons.Alert]} onPress={() => deleteEntry(data)}>
+
+          <Text style={Typography.Button}>Delete</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 
-  export default DetailsScreen;
+  export default Details;

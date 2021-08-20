@@ -3,9 +3,9 @@ import { Text, View, Button, TouchableOpacity, StyleSheet, TextInput, Switch, Sc
 import DatabaseContext from '../database/context';
 import {Picker} from '@react-native-picker/picker';
 import DatePicker from 'react-native-date-picker'
-import Styles, { Spacing, Typography } from '../styles';
+import Styles, { Buttons, Spacing, Typography, Colors } from '../styles';
 
-  function DetailsScreen({navigation, route}) {
+  function NewTransaction({navigation, route}) {
 
     const database = React.useContext(DatabaseContext);
     const [currencyVisible, setCurrencyVisible] = useState(false);
@@ -48,7 +48,7 @@ import Styles, { Spacing, Typography } from '../styles';
       <View style={Spacing.Container}>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 'auto'}}>
-        <Text style = {Typography.H1}>{returnTransactionType()}</Text>
+        <Text style = {Typography.H3}>{returnTransactionType()}</Text>
         <Switch
         trackColor={{ false: "#767577", true: "#767577" }}
         thumbColor={isIncome ? "#f4f3f4" : "#f4f3f4"}
@@ -58,12 +58,12 @@ import Styles, { Spacing, Typography } from '../styles';
       />
       </View>
 
-        <TextInput style={Styles.input}
+        <TextInput style={[Styles.input]}
         onChangeText={(text) => setTitle(text)}
         defaultValue = {title}
         />
 
-        <TextInput style={Styles.input}
+        <TextInput style={[Styles.input]}
         keyboardType = 'numeric'
         returnKeyType={ 'done' }
         onChangeText={(text) => setAmount(text)}
@@ -81,16 +81,16 @@ import Styles, { Spacing, Typography } from '../styles';
         <View style={Styles.centeredView}>
           <View style={Styles.modalView}>
             
-            <Picker selectedValue={currency} style={{height: 250, width: 250}} onValueChange={(itemValue, itemIndex) => setCurrency(itemValue)}>
+            <Picker selectedValue={currency} style={Styles.Picker} itemStyle={Styles.PickerItem} onValueChange={(itemValue, itemIndex) => setCurrency(itemValue)}>
             <Picker.Item label="CHF" value="CHF" />
             <Picker.Item label="EUR" value="EUR" />
             </Picker>
 
             <Pressable
-              style={[Styles.button, Styles.buttonClose]}
+              style={[Buttons.Button, Styles.buttonClose]}
               onPress={() => setCurrencyVisible(!currencyVisible)}
             >
-              <Text style={Styles.textStyle}>Done</Text>
+              <Text style={Typography.Modal}>Done</Text>
             </Pressable>
           </View>
         </View>
@@ -114,13 +114,14 @@ import Styles, { Spacing, Typography } from '../styles';
             onDateChange={(new_date) => setDate(new_date)}
             mode={'date'}
             locale={'en-gb'}
+            textColor={Colors.Font}
             />
 
             <Pressable
-              style={[Styles.button, Styles.buttonClose]}
+              style={[Buttons.Button, Styles.buttonClose]}
               onPress={() => setDateVisible(!dateVisible)}
             >
-              <Text style={Styles.textStyle}>Done</Text>
+              <Text style={Typography.Modal}>Done</Text>
             </Pressable>
           </View>
         </View>
@@ -129,12 +130,13 @@ import Styles, { Spacing, Typography } from '../styles';
       <Button title={currency} onPress={() => setCurrencyVisible(true)}/>
 
       <Button title={'' + date.getDate() + " - " + (date.getMonth() + 1) + " - " + date.getFullYear()} onPress={() => setDateVisible(true)}/>
-  
-        <Button
-          title="Save"
-          onPress={() => createEntry()}/>
+
+        <TouchableOpacity style={ Buttons.Button } onPress={() => createEntry()}>
+          <Text style={Typography.Button}>Save</Text>
+        </TouchableOpacity>
+
       </View>
     );
   }
 
-  export default DetailsScreen;
+  export default NewTransaction;

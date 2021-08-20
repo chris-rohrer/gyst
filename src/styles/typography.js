@@ -7,23 +7,25 @@
 
  export const Title = 'lightcoral'
 
+ const Heading = {
+   color: Colors.Font,
+   fontWeight: 'bold',
+   margin: 30,
+ }
+
  export const H1 = {
+   ...Heading,
     fontSize: 50,
-    fontWeight: 'bold',
-    margin: 30,
-    color: Colors.Font
   }
 
   export const H2 = {
+    ...Heading,
     fontSize: 40,
-    margin: 40,
-    color: Colors.Font
   }
 
   export const H3 = {
-    fontSize: 30,
-    margin: 30,
-    color: Colors.Font
+    ...Heading,
+    fontSize: 25,
   }
 
   export const Body = {
@@ -50,4 +52,10 @@ export const Button = {
 export const Summary = {
     color: Colors.Font,
     fontSize: 40,
+}
+
+export const Action = {
+  fontSize: 16,
+  backgroundColor: 'transparent',
+  padding: 10,
 }

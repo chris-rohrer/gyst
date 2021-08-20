@@ -1,11 +1,12 @@
-import React, {Component} from "react";
+import React from "react";
 import withObservables from "@nozbe/with-observables";
-import { ScrollView, Animated, StyleSheet, View, Text, TouchableOpacity, I18nManager } from "react-native";
+import { ScrollView, Animated, View, Text, TouchableOpacity, I18nManager } from "react-native";
 
 import { useNavigation } from '@react-navigation/native';
 
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { RectButton } from 'react-native-gesture-handler';
+import Styles, {Typography} from "../styles";
 
 function TransactionsList ({ transactions }) {
     const navigation = useNavigation();
@@ -23,7 +24,7 @@ function TransactionsList ({ transactions }) {
         outputRange: [-20, 0, 0, 1],
       });
       return (
-        <RectButton style={styles.leftAction} onPress={this.close}>
+        <RectButton style={Styles.leftAction} onPress={this.close}>
           <Animated.Text
             style={[
               styles.actionText,
@@ -49,9 +50,9 @@ function TransactionsList ({ transactions }) {
       return (
         <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
           <RectButton
-            style={[styles.rightAction, { backgroundColor: color }]}
+            style={[Styles.rightAction, { backgroundColor: color }]}
             onPress={pressHandler}>
-            <Text style={styles.actionText}>{text}</Text>
+            <Text style={Typography.Action}>{text}</Text>
           </RectButton>
         </Animated.View>
       );
@@ -89,9 +90,9 @@ const enhance = withObservables(["transactions"],({ database }) => ({
   }));
 
   const Transaction = ({ transaction }) => (
-    <View style={styles.label}>
-      <Text style={{flex: 1 }}> {transaction.title}</Text>
-      <Text style={{flex: 1, textAlign: 'right'}}> {transaction.amount} {transaction.currency}</Text>
+    <View style={Styles.label}>
+      <Text style={Typography.Modal}> {transaction.title}</Text>
+      <Text style={[Typography.Modal,{flex: 1, textAlign: 'right'}]}> {transaction.amount} {transaction.currency}</Text>
     </View>
   )
   
@@ -100,32 +101,5 @@ const enhance = withObservables(["transactions"],({ database }) => ({
   }))
 
   const EnhancedTransaction = enhanceTransaction(Transaction)
-
-  const styles = StyleSheet.create({
-    label: {
-      flexDirection: "row",
-      backgroundColor: '#F7F7F7',
-      alignSelf: 'stretch',
-      padding: 15,
-      margin: 5,
-      borderRadius: 4,
-    },
-
-    leftAction: {
-      flex: 1,
-      backgroundColor: '#497AFC',
-      justifyContent: 'center',
-    },
-    actionText: {
-      fontSize: 16,
-      backgroundColor: 'transparent',
-      padding: 10,
-    },
-    rightAction: {
-      alignItems: 'center',
-      flex: 1,
-      justifyContent: 'center',
-    },
-  })
 
 export default enhance(TransactionsList);

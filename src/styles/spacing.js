@@ -1,5 +1,5 @@
 
-import {Colors} from './index'
+import * as Colors from './colors'
 
 export const Container = {
     flex: 1,

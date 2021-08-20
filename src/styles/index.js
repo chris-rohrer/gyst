@@ -8,15 +8,6 @@ export { Typography, Spacing, Colors, Buttons }
 import { StyleSheet} from 'react-native';
 
 const Styles = StyleSheet.create({
-    input: {
-      borderWidth: 1,
-      alignSelf: 'stretch',
-      marginHorizontal: 32,
-      marginVertical: 6,
-      paddingHorizontal: 20,
-      height: 45,
-      borderRadius: 6
-    },
 
     toppanel: {
         alignSelf: 'stretch',
@@ -40,7 +31,7 @@ const Styles = StyleSheet.create({
     },
   
     input: {
-      borderWidth: 1,
+      borderWidth: 2,
       borderColor: Colors.Font,
       alignSelf: 'stretch',
       marginHorizontal: 32,
@@ -60,13 +51,33 @@ const Styles = StyleSheet.create({
       color: Colors.Font,
     },
 
-
     centeredView: {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
       marginTop: 22
+    },
+
+    label: {
+      flexDirection: "row",
+      backgroundColor: '#2196F3',
+      alignSelf: 'stretch',
+      padding: 15,
+      margin: 5,
+      borderRadius: 4,
+    },
+
+    leftAction: {
+      flex: 1,
+      backgroundColor: '#497AFC',
+      justifyContent: 'center',
+    },
+    rightAction: {
+      alignItems: 'center',
+      flex: 1,
+      justifyContent: 'center',
     }
+
   });
 
   export default Styles

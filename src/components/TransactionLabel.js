@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Buttons } from '../styles'
 
 import { useNavigation } from '@react-navigation/native';
 

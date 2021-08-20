@@ -27,6 +27,12 @@ export const Disabled = {
 
 }
 
+export const Alert = {
+  ...Button,
+  backgroundColor: Colors.Alert
+
+}
+
 export const Open = {
     ...Button,
     backgroundColor: "#F194FF",

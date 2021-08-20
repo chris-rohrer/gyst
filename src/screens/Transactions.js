@@ -5,7 +5,7 @@ import TransactionsList from '../components/TransactionsList';
 import DatabaseContext from '../database/context';
 import { Spacing } from '../styles';
 
-  function TransactionsScreen({navigation}) {
+  function Transactions({navigation}) {
 
     const database = React.useContext(DatabaseContext);
 
@@ -26,4 +26,4 @@ import { Spacing } from '../styles';
     );
   }
 
-  export default TransactionsScreen;
+  export default Transactions;
