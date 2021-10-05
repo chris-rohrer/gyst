@@ -99,14 +99,14 @@ import Styles, { Spacing, Typography, Buttons, Colors  } from'../styles'
       />
       </View>
 
-        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35}, Typography.Emphasis]}>Title</Text>
-        <TextInput style={[Styles.input, Typography.H3]}
+        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35}, Typography.Emphasis]}>TITLE</Text>
+        <TextInput style={[Styles.input, Typography.H4]}
         onChangeText={(text) => setTitle(text)}
         onBlur={() => updateTitle(title, data)}
         defaultValue = {data.title}
         />
-        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35, marginTop: 15}, Typography.Emphasis]}>Amount</Text>
-        <TextInput style={[Styles.input, Typography.H3]}
+        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35, marginTop: 15}, Typography.Emphasis]}>AMOUNT</Text>
+        <TextInput style={[Styles.input, Typography.H4]}
         keyboardType = 'numeric'
         returnKeyType={ 'done' }
         onChangeText={(text) => setAmount(text)}
@@ -169,21 +169,18 @@ import Styles, { Spacing, Typography, Buttons, Colors  } from'../styles'
         </View>
       </Modal>
 
-      <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 'auto'}}>
-        <Text style={Typography.H3}>Currency:</Text>
-        <TouchableOpacity onPress={() => setCurrencyVisible(true)}>
-          <Text style={Typography.H3}>{currency}</Text>
+      
+        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35, marginTop: 15}, Typography.Emphasis]}>CURRENCY</Text>
+        <TouchableOpacity style={{alignSelf: 'stretch'}} onPress={() => setCurrencyVisible(true)}>
+          <Text style={[Styles.input, Typography.H4, {paddingTop: 8}]}>{currency}</Text>
         </TouchableOpacity>
-      </View>
 
-
-      <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 'auto'}}>
-        <Text style={Typography.H3}>Date:</Text>
-        <TouchableOpacity  onPress={() => setDateVisible(true)}>
-          <Text style={Typography.H3}>{'' + data.date.getDate() + " - " + (data.date.getMonth() + 1) + " - " + data.date.getFullYear()}</Text>
+        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35, marginTop: 15}, Typography.Emphasis]}>DATE</Text>
+        <TouchableOpacity  style={{alignSelf: 'stretch'}} onPress={() => setDateVisible(true)}>
+          <Text style={[Styles.input, Typography.H4, {paddingTop: 8}]}>{'' + data.date.getDate() + " - " + (data.date.getMonth() + 1) + " - " + data.date.getFullYear()}</Text>
         </TouchableOpacity>
-      </View>
-      <TouchableOpacity style={[Buttons.Alert]} onPress={() => deleteEntry(data)}>
+
+        <TouchableOpacity style={[Buttons.Alert, {marginTop: 100}]} onPress={() => deleteEntry(data)}>
 
           <Text style={Typography.Button}>Delete</Text>
         </TouchableOpacity>

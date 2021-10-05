@@ -8,8 +8,7 @@ function About({navigation}) {
     <View style={Spacing.Container}>
        <Text style={Typography.H1}>About</Text>
        <Text style={[Typography.Body, {marginHorizontal: 35, marginBottom: 15}]}>
-         Thank you for taking your time and testing this app. Check out the roadmap to see what features I am working on, or look at the entire code on GitHub. {"\n\n"}
-         Feel free to contact me.
+         Thanks for taking the time to test this app. Check out the roadmap to see what features I am working on, or find the entire code on GitHub. {"\n\n"}
        </Text>
       <TouchableOpacity style={ Buttons.Button } onPress={() => navigation.navigate('Roadmap')}>
           <Text style={Typography.Button}>Roadmap</Text>
@@ -23,9 +22,9 @@ function About({navigation}) {
           <Text style={Typography.Button}>Developer</Text>
         </TouchableOpacity>
 
-      <TouchableOpacity style={ Buttons.Button } onPress={ ()=>{ Linking.openURL('mailto:somethingemail@gmail.com?subject=abcdefg')}}>
+      {/* <TouchableOpacity style={ Buttons.Button } onPress={ ()=>{ Linking.openURL('mailto:somethingemail@gmail.com?subject=abcdefg')}}>
         <Text style={Typography.Button}>Mail</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GYST.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>154DBACF815EBDE72E6E8ADA85EC25112DF04224</string>
+				<key>dateExpires</key>
+				<string>10.08.22</string>
+				<key>type</key>
+				<string>Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>2H5UZLJ97V.dev.chrisrohrer.GYST</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>2H5UZLJ97V</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>2H5UZLJ97V.dev.chrisrohrer.GYST</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>GYST.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>719783e3-3252-4c28-9416-7b8436008d96</string>
+				<key>dateExpires</key>
+				<string>10.08.22</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: dev.chrisrohrer.GYST</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>2H5UZLJ97V</string>
+				<key>name</key>
+				<string>Christoph Rohrer</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>0.1.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>

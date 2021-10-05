@@ -28,6 +28,11 @@
     fontSize: 25,
   }
 
+  export const H4 = {
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
+
   export const Body = {
     color: Colors.Font,
 }

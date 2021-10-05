@@ -16,12 +16,14 @@ import { Spacing } from '../styles';
 
         <TransactionsList database={database}/>
 
-        <Button title="Go back" onPress={() => navigation.goBack()} />
-  
+        <View style={{flexDirection: "row"}}>
         <Button
           title="Go home"
           onPress={() => navigation.popToTop()}
         />
+        <Button title="Go back" onPress={() => navigation.goBack()} />
+        </View>
+
       </View>
     );
   }

@@ -58,12 +58,14 @@ import Styles, { Buttons, Spacing, Typography, Colors } from '../styles';
       />
       </View>
 
-        <TextInput style={[Styles.input]}
+
+        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35}, Typography.Emphasis]}>TITLE</Text>
+        <TextInput style={[Styles.input, Typography.H4]}
         onChangeText={(text) => setTitle(text)}
         defaultValue = {title}
         />
-
-        <TextInput style={[Styles.input]}
+        <Text style={[{alignSelf:'flex-start', marginHorizontal: 35, marginTop: 15}, Typography.Emphasis]}>AMOUNT</Text>
+        <TextInput style={[Styles.input, Typography.H4]}
         keyboardType = 'numeric'
         returnKeyType={ 'done' }
         onChangeText={(text) => setAmount(text)}
@@ -127,11 +129,17 @@ import Styles, { Buttons, Spacing, Typography, Colors } from '../styles';
         </View>
       </Modal>
 
-      <Button title={currency} onPress={() => setCurrencyVisible(true)}/>
+      <Text style={[{alignSelf:'flex-start', marginHorizontal: 35, marginTop: 15}, Typography.Emphasis]}>CURRENCY</Text>
+        <TouchableOpacity style={{alignSelf: 'stretch'}} onPress={() => setCurrencyVisible(true)}>
+          <Text style={[Styles.input, Typography.H4, {paddingTop: 8}]}>{currency}</Text>
+        </TouchableOpacity>
 
-      <Button title={'' + date.getDate() + " - " + (date.getMonth() + 1) + " - " + date.getFullYear()} onPress={() => setDateVisible(true)}/>
+      <Text style={[{alignSelf:'flex-start', marginHorizontal: 35, marginTop: 15}, Typography.Emphasis]}>DATE</Text>
+      <TouchableOpacity  style={{alignSelf: 'stretch'}} onPress={() => setDateVisible(true)}>
+        <Text style={[Styles.input, Typography.H4, {paddingTop: 8}]}>{'' + date.getDate() + " - " + (date.getMonth() + 1) + " - " + date.getFullYear()}</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={ Buttons.Button } onPress={() => createEntry()}>
+        <TouchableOpacity style={[Buttons.Button, {marginTop: 100}]} onPress={() => createEntry()}>
           <Text style={Typography.Button}>Save</Text>
         </TouchableOpacity>
 

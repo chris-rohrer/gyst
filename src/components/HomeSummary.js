@@ -10,12 +10,12 @@ function HomeSummary ({transactions}) {
             sum = sum+transaction.amount)
     )
 
+    sum = sum.toFixed(2)
 
     return(
-        <View style={styles.toppanel}>
-            <Text style={Typography.H1}>GYST!</Text>
-            <Text style={Typography.H2}>Summary</Text>
-            <Text style={Typography.Summary}>{sum} CHF</Text>
+        <View style={[styles.toppanel, {paddingBottom: 0}]}>
+            <Text style={Typography.Emphasis}>SUMMARY</Text>
+            <Text style={[Typography.H2, {margin: 0}]}>{sum} CHF</Text>
         </View>
     )
 }
