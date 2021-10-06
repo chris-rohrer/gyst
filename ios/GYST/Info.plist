@@ -6,6 +6,21 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>GYST</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>CSV file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.comma-seperated-values-text</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -49,8 +64,6 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	
-	<!-- custom file start -->
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -61,34 +74,15 @@
 			<key>UTTypeDescription</key>
 			<string>Custom File</string>
 			<key>UTTypeIdentifier</key>
-			<!-- change custom file extension -->
-			<string>com.example.document.csv</string>
+			<string>public.comma-seperated-values-text</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
-				<!-- change custom file extension -->
 				<array>
 					<string>csv</string>
 				</array>
 			</dict>
 		</dict>
 	</array>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeName</key>
-			<string>Custom File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<!-- change custom file extension -->
-				<string>com.example.document.csv</string>
-			</array>
-		</dict>
-	</array>
-	<!-- custom file end -->
 </dict>
 </plist>
